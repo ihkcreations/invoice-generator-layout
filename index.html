@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <title>Invoice Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Invoice Generator</h1>
+    <div class="actions">
+      <button type="button" id="print-btn">Print Invoice</button>
+    </div>
+  </header>
+  <main class="app-main">
+    <section class="editor-pane">
+      <h2>Details</h2>
+      <div class="field-group">
+        <label for="inv-number">Invoice Number</label>
+        <input type="text" id="inv-number" value="INV-2023-001">
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label for="inv-date">Issue Date</label>
+          <input type="date" id="inv-date">
+        </div>
+        <div class="field-group">
+          <label for="inv-due">Due Date</label>
+          <input type="date" id="inv-due">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label for="inv-taxrate">Tax Rate Percent</label>
+          <input type="number" id="inv-taxrate" value="10" min="0" max="100" step="0.5">
+        </div>
+        <div class="field-group">
+          <label for="inv-currency">Currency Symbol</label>
+          <input type="text" id="inv-currency" value="$" maxlength="3">
+        </div>
+      </div>
+      <fieldset class="party-fieldset">
+        <legend>From Company</legend>
+        <div class="field-group">
+          <label for="from-name">Name</label>
+          <input type="text" id="from-name" value="Acme Studio LLC">
+        </div>
+        <div class="field-group">
+          <label for="from-address">Address</label>
+          <textarea id="from-address">123 Creative Way
+Suite 100
+Metropolis</textarea>
+        </div>
+      </fieldset>
+      <fieldset class="party-fieldset">
+        <legend>To Client</legend>
+        <div class="field-group">
+          <label for="to-name">Name</label>
+          <input type="text" id="to-name" value="Globex Corporation">
+        </div>
+        <div class="field-group">
+          <label for="to-address">Address</label>
+          <textarea id="to-address">789 Industrial Pkwy
+Sector 4
+Gotham</textarea>
+        </div>
+      </fieldset>
+      <div class="items-section">
+        <h3>Line Items</h3>
+        <div id="items-list"></div>
+        <button type="button" id="add-item-btn">Add Item</button>
+      </div>
+    </section>
+    <section class="preview-pane">
+      <div class="invoice-sheet" id="invoice-sheet">
+        <div class="sheet-header">
+          <div>
+            <h2 id="preview-from-name" class="bold-text">Acme Studio LLC</h2>
+            <pre id="preview-from-address" class="pre-text">123 Creative Way
+Suite 100
+Metropolis</pre>
+          </div>
+          <div class="sheet-meta">
+            <h2>INVOICE</h2>
+            <p><span class="label-muted">Number:</span> <span id="preview-inv-number">INV-2023-001</span></p>
+            <p><span class="label-muted">Date:</span> <span id="preview-inv-date"></span></p>
+            <p><span class="label-muted">Due:</span> <span id="preview-inv-due"></span></p>
+          </div>
+        </div>
+        <div class="sheet-bill-to">
+          <h3>Billed To:</h3>
+          <p id="preview-to-name" class="bold-text">Globex Corporation</p>
+          <pre id="preview-to-address" class="pre-text">789 Industrial Pkwy
+Sector 4
+Gotham</pre>
+        </div>
+        <table class="sheet-table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th class="num-col">Qty</th>
+              <th class="num-col">Price</th>
+              <th class="num-col">Total</th>
+            </tr>
+          </thead>
+          <tbody id="preview-table-body">
+          </tbody>
+        </table>
+        <div class="sheet-totals">
+          <div class="total-row">
+            <span>Subtotal</span>
+            <span id="preview-subtotal">$0.00</span>
+          </div>
+          <div class="total-row">
+            <span>Tax (<span id="preview-tax-rate-label">10</span>%)</span>
+            <span id="preview-tax-amount">$0.00</span>
+          </div>
+          <div class="total-row grand-total">
+            <span>Total Due</span>
+            <span id="preview-grand-total">$0.00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
